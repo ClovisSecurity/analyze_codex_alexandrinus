@@ -15,7 +15,6 @@ import io
 # Stores 2 version of values to search for
 # NOTE: THE SECOND VALUE MUST BE INCLUDED OR YOU CAN MAKE AN EMPTY "" in place
 word_search_str1 = "CλΤ"
-word_search_str2 = "CΗΤ"
 
 # Values where CAT or CHT were found
 word_arr = []
@@ -54,10 +53,6 @@ for line in bible_lines_arr:
         word_arr = word_arr + [line]
         word_loc_arr = word_loc_arr + [count]
         filtered_index_tup_arr = filtered_index_tup_arr + [(count, line)]
-    if word_search_str2 in line:
-        word_arr = word_arr + [line]
-        word_loc_arr = word_loc_arr + [count]
-        filtered_index_tup_arr = filtered_index_tup_arr + [(count, line)]
 
     count = count + 1
 
@@ -75,7 +70,3 @@ slice_time = str(time.time())[:10]
 
 # Create filename that will be used for exporting data
 output_filename = output_filename + slice_time + ".txt"
-
-# I haven't done this yet
-# with io.open(output_filename,'w',encoding='utf8') as f:
-#    f.write(sep_text)
