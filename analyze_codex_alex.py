@@ -95,7 +95,7 @@ for larger_text in index_tup_arr:
             section9 = str(index_tup_arr[counter_tup + 4][1])
             section10 = str(index_tup_arr[counter_tup + 5][1])
 
-            print(
-                section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10)
-
+            concat_str_entry = section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10
+            print(concat_str_entry)
+            
     counter_tup = counter_tup + 1
