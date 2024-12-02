@@ -70,3 +70,32 @@ slice_time = str(time.time())[:10]
 
 # Create filename that will be used for exporting data
 output_filename = output_filename + slice_time + ".txt"
+
+goal_arr = []
+counter_tup = 0
+
+for larger_text in index_tup_arr:
+    # print(larger_text[0]) # all indices
+    for smaller_text in filtered_index_tup_arr:
+        if smaller_text[0] == larger_text[0]:
+            # these return the same value so.. we can use the counter_tup for relative printing
+            #            |                   |
+            #            v                   v
+            # print(larger_text + index_tup_arr[counter_tup])
+
+            # Create
+            section1 = str(index_tup_arr[counter_tup - 4][1])
+            section2 = str(index_tup_arr[counter_tup - 3][1])
+            section3 = str(index_tup_arr[counter_tup - 2][1])
+            section4 = str(index_tup_arr[counter_tup - 1][1])
+            section5 = str(index_tup_arr[counter_tup - 0][1])
+            section6 = str(index_tup_arr[counter_tup + 1][1])
+            section7 = str(index_tup_arr[counter_tup + 2][1])
+            section8 = str(index_tup_arr[counter_tup + 3][1])
+            section9 = str(index_tup_arr[counter_tup + 4][1])
+            section10 = str(index_tup_arr[counter_tup + 5][1])
+
+            print(
+                section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10)
+
+    counter_tup = counter_tup + 1
