@@ -74,6 +74,8 @@ output_filename = output_filename + slice_time + ".txt"
 goal_arr = []
 counter_tup = 0
 
+# trying to access text surrounding the pattern matches that
+# we detected during the word search
 for larger_text in index_tup_arr:
     # print(larger_text[0]) # all indices
     for smaller_text in filtered_index_tup_arr:
@@ -97,5 +99,5 @@ for larger_text in index_tup_arr:
 
             concat_str_entry = section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10
             print(concat_str_entry)
-            
+
     counter_tup = counter_tup + 1
