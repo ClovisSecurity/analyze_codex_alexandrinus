@@ -5,7 +5,7 @@ import os
 ##################### The Following Alphabet Can Be Used to Search: ##############################
 ##################################################################################################
 #####  ALPHABET:                                                                             #####
-#####  λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Ρ, λ, Δ, Τ, Ξ, Ζ, K, ψ, Ν, Φ, ω                      #####
+#####  λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Ρ, λ, Δ, Τ, Ξ, Ζ, K, ψ, Ν, Φ, ω, ΚΥ                  #####
 #####                                                                                        #####
 ##### The only characters available to use for flex searches are below:                      #####
 ##### FLEX ALPHABET:                                                                         #####
@@ -14,7 +14,7 @@ import os
 ##################################################################################################
 
 # Stores value to search for
-word_search_str1 = "λλλλ"
+word_search_str1 = 'ΖΕΥ'
 
 # Values where CAT or CHT were found
 word_arr = []
@@ -69,6 +69,7 @@ for line in word_arr:
 
 goal_arr = []
 counter_tup = 0
+
 # trying to access text surrounding the pattern matches that
 # we detected during the word search
 for larger_text in index_tup_arr:
@@ -81,20 +82,56 @@ for larger_text in index_tup_arr:
             # print(larger_text + index_tup_arr[counter_tup])
 
             # get lines surrounding the word the users searched for
-            section0 = str(index_tup_arr[counter_tup - 5][1])
-            section1 = str(index_tup_arr[counter_tup - 4][1])
-            section2 = str(index_tup_arr[counter_tup - 3][1])
-            section3 = str(index_tup_arr[counter_tup - 2][1])
-            section4 = str(index_tup_arr[counter_tup - 1][1])
-            section5 = str(index_tup_arr[counter_tup][1])
-            section6 = str(index_tup_arr[counter_tup + 1][1])
-            section7 = str(index_tup_arr[counter_tup + 2][1])
-            section8 = str(index_tup_arr[counter_tup + 3][1])
-            section9 = str(index_tup_arr[counter_tup + 4][1])
-            section10 = str(index_tup_arr[counter_tup + 5][1])
-            section11 = str(index_tup_arr[counter_tup + 6][1])
+            try:
+                section0 = str(index_tup_arr[counter_tup - 5][1])
+            except IndexError:
+                pass
+            try:
+                section1 = str(index_tup_arr[counter_tup - 4][1])
+            except IndexError:
+                pass
+            try:
+                section2 = str(index_tup_arr[counter_tup - 3][1])
+            except IndexError:
+                pass
+            try:
+                section3 = str(index_tup_arr[counter_tup - 2][1])
+            except IndexError:
+                pass
+            try:
+                section4 = str(index_tup_arr[counter_tup - 1][1])
+            except IndexError:
+                pass
+            try:
+                section5 = str(index_tup_arr[counter_tup][1])
+            except IndexError:
+                pass
+            try:
+                section6 = str(index_tup_arr[counter_tup + 1][1])
+            except IndexError:
+                pass
+            try:
+                section7 = str(index_tup_arr[counter_tup + 2][1])
+            except IndexError:
+                pass
+            try:
+                section8 = str(index_tup_arr[counter_tup + 3][1])
+            except IndexError:
+                pass
+            try:
+                section9 = str(index_tup_arr[counter_tup + 4][1])
+            except IndexError:
+                pass
+            try:
+                section10 = str(index_tup_arr[counter_tup + 5][1])
+            except IndexError:
+                pass
+            try:
+                section11 = str(index_tup_arr[counter_tup + 6][1])
+            except IndexError:
+                pass
 
-            # Concatenates fields near the field where the value searched for was found.
+                # Concatenates fields near the field where the value searched for was found.
             concat_str_entry = section0 + section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10 + section11
 
             # print(concat_str_entry)
@@ -116,7 +153,6 @@ for item in goal_arr:
         new_arr = new_arr + [replaced_str]
     else:
         new_arr = new_arr + [item]
-
 # Take a slice of a timestamp for filename
 slice_time = str(time.time())[:10]
 
