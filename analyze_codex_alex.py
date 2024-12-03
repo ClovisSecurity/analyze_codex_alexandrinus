@@ -1,20 +1,20 @@
 import time
 import io
-##########################################################################################
-################### The Following Alphabet Can Be Used to Search: ########################
-##########################################################################################
-###  ALPHABET:
-### λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Ρ, λ, Δ, Τ, Ξ, Ζ, K, ψ, Ν, Φ, ω
-###
-### The only characters available to use for flex searches are below:
-### FLEX ALPHABET:
-### B, Γ, Υ, ι(Also MARK INDICATOR), Ο(C, E, Θ), Η(N), Ρ, λ(α, Δ), Τ, Ξ, Ζ, K, ψ, Φ, ω, Χ
-###########################################################################################
-###########################################################################################
+import os
+##################################################################################################
+##################### The Following Alphabet Can Be Used to Search: ##############################
+##################################################################################################
+#####  ALPHABET:                                                                             #####
+#####  λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Ρ, λ, Δ, Τ, Ξ, Ζ, K, ψ, Ν, Φ, ω                      #####
+#####                                                                                        #####
+##### The only characters available to use for flex searches are below:                      #####
+##### FLEX ALPHABET:                                                                         #####
+##### B, Γ, Υ, ι(Also MARK INDICATOR), Ο(C, E, Θ), Η(N), Ρ, λ(α, Δ), Τ, Ξ, Ζ, K, ψ, Φ, ω, Χ  #####
+##################################################################################################
+##################################################################################################
 
-# Stores 2 version of values to search for
-# NOTE: THE SECOND VALUE MUST BE INCLUDED OR YOU CAN MAKE AN EMPTY "" in place
-word_search_str1 = "CλΤ"
+# Stores value to search for
+word_search_str1 = "λλλλ"
 
 # Values where CAT or CHT were found
 word_arr = []
@@ -65,15 +65,10 @@ print("word_loc_arr value", str(word_loc_arr))
 for line in word_arr:
     print(line)
 
-# Take a slice of a timestamp for filename
-slice_time = str(time.time())[:10]
 
-# Create filename that will be used for exporting data
-output_filename = output_filename + slice_time + ".txt"
 
 goal_arr = []
 counter_tup = 0
-
 # trying to access text surrounding the pattern matches that
 # we detected during the word search
 for larger_text in index_tup_arr:
@@ -85,19 +80,65 @@ for larger_text in index_tup_arr:
             #            v                   v
             # print(larger_text + index_tup_arr[counter_tup])
 
-            # Create
+            # get lines surrounding the word the users searched for
+            section0 = str(index_tup_arr[counter_tup - 5][1])
             section1 = str(index_tup_arr[counter_tup - 4][1])
             section2 = str(index_tup_arr[counter_tup - 3][1])
             section3 = str(index_tup_arr[counter_tup - 2][1])
             section4 = str(index_tup_arr[counter_tup - 1][1])
-            section5 = str(index_tup_arr[counter_tup - 0][1])
+            section5 = str(index_tup_arr[counter_tup][1])
             section6 = str(index_tup_arr[counter_tup + 1][1])
             section7 = str(index_tup_arr[counter_tup + 2][1])
             section8 = str(index_tup_arr[counter_tup + 3][1])
             section9 = str(index_tup_arr[counter_tup + 4][1])
             section10 = str(index_tup_arr[counter_tup + 5][1])
+            section11 = str(index_tup_arr[counter_tup + 6][1])
 
-            concat_str_entry = section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10
-            print(concat_str_entry)
+            # Concatenates fields near the field where the value searched for was found.
+            concat_str_entry = section0 + section1 + section2 + section3 + section4 + section5 + section6 + section7 + section8 + section9 + section10 + section11
+
+            # print(concat_str_entry)
+
+            goal_arr = goal_arr + [concat_str_entry]
 
     counter_tup = counter_tup + 1
+
+print(goal_arr)
+
+# Replace all occurences of search string with string surrounded by spaces.
+replace_str = ' ' + word_search_str1 + ' '
+
+new_arr = []
+
+for item in goal_arr:
+    replaced_str = item.replace(word_search_str1, replace_str)
+    if word_search_str1 in item:
+        new_arr = new_arr + [replaced_str]
+    else:
+        new_arr = new_arr + [item]
+
+# Take a slice of a timestamp for filename
+slice_time = str(time.time())[:10]
+
+# All results stored in same directory
+output_dest_dir = './codex-search-results/'
+
+if os.path.isdir(output_dest_dir):
+    print(f"Directory '{output_dest_dir}' exists.\n\nSaving Search Results...\n\nResults Saved")
+else:
+    os.mkdir(output_dest_dir)
+
+# Create filename that will be used for exporting data
+output_filename = output_dest_dir + word_search_str1 + output_filename + slice_time + ".txt"
+
+# Include helpful information in output
+top_of_doc = '\nHere are the Search Results for ' + word_search_str1 + ' in ' + bible_filename + '\n\n'
+count_line = 'There were ' + str(len(goal_arr)) + ' occurences of ' + word_search_str1 + ' in the document\n\n'
+top_line = top_of_doc + count_line
+
+# write information to a file
+with open(output_filename, "w", encoding="utf-8") as file:
+    file.write(top_line)
+    for line in new_arr:
+        # Write each line to the file, adding a newline character
+        file.write(line + "\n")
