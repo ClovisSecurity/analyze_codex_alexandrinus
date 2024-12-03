@@ -4,17 +4,17 @@ import os
 ##################################################################################################
 ##################### The Following Alphabet Can Be Used to Search: ##############################
 ##################################################################################################
-#####  ALPHABET:                                                                             #####
-#####  λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Ρ, λ, Δ, Τ, Ξ, Ζ, K, ψ, Ν, Φ, ω, ΚΥ                  #####
-#####                                                                                        #####
-##### The only characters available to use for flex searches are below:                      #####
-##### FLEX ALPHABET:                                                                         #####
-##### B, Γ, Υ, ι(Also MARK INDICATOR), Ο(C, E, Θ), Η(N), Ρ, λ(α, Δ), Τ, Ξ, Ζ, K, ψ, Φ, ω, Χ  #####
+#####  ALPHABET:                                                                                  #####
+#####  λ, B, Γ, Ε, C, Υ, Χ, ι, Ο, Θ, Η, Μ, Ρ, λ, Δ, Τ, Ξ, , K, ψ, Ν, Φ, ω, ΚΥ, Π                  #####
+#####                                                                                             #####
+##### The only characters available to use for flex searches are below:                           #####
+##### FLEX ALPHABET:                                                                              #####
+##### B, Γ, Υ, ι(Also MARK INDICATOR), Ο(C, E, Θ), Η(N), Ρ,Μ, λ(α, Δ), Τ, Ξ, Ζ, K, ψ, Φ, ω, Χ, Π  #####
 ##################################################################################################
 ##################################################################################################
 
 # Stores value to search for
-word_search_str1 = 'ΖΕΥ'
+word_search_str1 = 'λΕΝλ'
 
 # Values where CAT or CHT were found
 word_arr = []
@@ -59,11 +59,11 @@ for line in bible_lines_arr:
 print("length of word_arr is", len(word_arr))
 
 # This should contain location of index where value was found
-print("word_loc_arr value", str(word_loc_arr))
+# print("word_loc_arr value", str(word_loc_arr))
 
 # print lines where CAT and KYCAT were found
-for line in word_arr:
-    print(line)
+#for line in word_arr:
+#    print(line)
 
 
 
@@ -177,4 +177,5 @@ with open(output_filename, "w", encoding="utf-8") as file:
     file.write(top_line)
     for line in new_arr:
         # Write each line to the file, adding a newline character
-        file.write(line + "\n")
+        file.write(
+            line + "\n" + "\n*****************************************************\n****************************************************\n\n")
