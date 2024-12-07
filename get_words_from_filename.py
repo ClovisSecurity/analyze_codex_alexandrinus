@@ -3,7 +3,7 @@ path_to_dir = "C://Users//xanderinotoko//Desktop//bible-work//edited-septuagints
 
 files_in_dir = os.listdir(path_to_dir)
 
-output_filename = 'list_of_words_searched.txt'
+output_filename = 'list_of_eng_words_searched.txt'
 
 searched_word_arr = []
 for filename in files_in_dir:
@@ -47,10 +47,11 @@ for filename_str in list_of_files:
 
 print(ordered_word_list)
 
-
+count = 1
 # write information to a file
 with open(output_filename, "w", encoding="utf-8") as file:
     file.write("Here are the Words that Have Been Searched: \n\n")
     for line in ordered_word_list:
         # Write each line to the file, adding a newline character
-        file.write(line + '\n')
+        file.write(str(count) + ' ~ ' + line + '\n')
+        count = count + 1
